@@ -1,4 +1,4 @@
-module go-lib
+module github.com/Lang0808/libutils
 
 go 1.20
 
