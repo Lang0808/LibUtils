@@ -1,6 +1,8 @@
 package libutils
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestError(t *testing.T) {
 	project_name := "test_project"
@@ -23,9 +25,8 @@ func TestError(t *testing.T) {
 			if test.level == "Error" {
 				Error(test.package_name, test.function_name, test.message)
 			} else {
-				Info(test.package_name, test.function_name, test.message)
+				Info_msg(test.package_name, test.function_name, test.message)
 			}
 		})
 	}
-
 }

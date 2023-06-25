@@ -1,6 +1,7 @@
 package libutils
 
 import (
+	"encoding/json"
 	"os"
 
 	"go.uber.org/zap"
@@ -67,9 +68,27 @@ func Error(package_name string, function_name string, message string) {
 	logger.Error(msg)
 }
 
-func Info(package_name string, function_name string, message string) {
+func Info_msg(package_name string, function_name string, message string) {
 	defer logger.Sync()
 	msg := "[%v; %v] %v"
 	msg = fmt.Sprintf(msg, package_name, function_name, message)
 	logger.Info(msg)
+}
+
+func Info_entry(package_name string, function_name string, logEntry LogEntry) {
+	defer logger.Sync()
+	msg := "[%v; %v] %v"
+	bytes, err := json.Marshal(logEntry)
+	if err != nil {
+		// do nothing
+	}
+	msg = fmt.Sprintf(msg, package_name, function_name, string(bytes))
+	logger.Info(msg)
+}
+
+type LogEntry struct {
+	SrcId     int32
+	CommandId int32
+	ExecTime  int32
+	Extra     map[string]string
 }
