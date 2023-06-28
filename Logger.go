@@ -15,8 +15,8 @@ var logger *zap.Logger
 
 func InitLogger(projectName string) {
 
-	outputPath := fmt.Sprintf("/tmp/logs/%v/%v.log", projectName, projectName)
-	errorOutputPath := fmt.Sprintf("/tmp/logs/%v/%v_error.log", projectName, projectName)
+	outputPath := fmt.Sprintf("/data/log/%v/%v.log", projectName, projectName)
+	errorOutputPath := fmt.Sprintf("/data/log/%v/%v_error.log", projectName, projectName)
 	if !IsExist(outputPath) {
 		err := CreateFile(outputPath)
 		if err != nil {
